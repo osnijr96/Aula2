@@ -19,5 +19,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Show databases
         run: |
-          mysql -h ${{ 127.0.0.1 }} --port 3306 -u ${{ root }} -p${{ 32243100 }} -e "SHOW DATABASES";
-#oi
+          mysql -h 127.0.0.1 --port 3306 -u root -p32243100 -e "SHOW DATABASES";
