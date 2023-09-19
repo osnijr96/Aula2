@@ -17,12 +17,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Debug Connection
-        run: |
-          echo "DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}"
-          echo "DB_USER: ${{ secrets.DB_USER }}"
-          echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
       - name: Show databases
         run: |
-          mysql -h ${{ secrets.DB_HOSTNAME }} --port 3306 -u ${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES";
+          mysql -h ${{ 127.0.0.1 }} --port 3306 -u ${{ root }} -p${{ 32243100 }} -e "SHOW DATABASES";
 #oi
