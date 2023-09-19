@@ -1,4 +1,28 @@
 name: Matricula
+on:
+  push:
+    branches:
+      - main # ou especifique o nome do seu branch
+
+jobs:
+  test-output:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test Output
+      run: echo "Here is a test"
+    
+  connect-remote:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Debug Connection
+      run: |
+        echo "DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}"
+        echo "DB_USER: ${{ secrets.DB_USER }}"
+        echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
+
+'''
+name: Matricula
 run-name: Setting up the Matricula database
 on: [push]
 jobs:
@@ -7,17 +31,11 @@ jobs:
     steps:
     - name: Test Output
       run: echo "Here is a test"
-- name: Debug Connection
-  run: |
-    echo "DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}"
-    echo "DB_USER: ${{ secrets.DB_USER }}"
-    echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
-
-#  connect-remote:
-#    runs-on: ubuntu-latest
-#    steps:
-#    - uses: actions/checkout@v3
-#    - name: Show databases
-#      run: mysql -h ${{ secrets.DB_HOSTNAME }} --port 3306 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES";
-#    - name: Run a sample SQL on remote
-#      run: mysql -h ${{ secrets.DB_HOSTNAME }} --port 3306 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "source D:/OneDrive/Área de Trabalho/FIEB/guitess/Matricula.sql";
+  connect-remote:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Show databases
+      run: mysql -h ${{ secrets.DB_HOSTNAME }} --port 3306 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES";
+    - name: Run a sample SQL on remote
+      run: mysql -h ${{ secrets.DB_HOSTNAME }} --port 3306 -u${{ secrets.DB_USER }} -p${{ secrets.DB_PASSWORD }} -e "source D:/OneDrive/Área de Trabalho/FIEB/guitess/Matricula.sql";''''
